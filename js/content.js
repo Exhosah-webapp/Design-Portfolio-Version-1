@@ -15,8 +15,9 @@
    MOTION & GAME   See "effects" and "game" near the bottom of this file.
 
    Other files:  index.html (page shell) · css/style.css (look and feel)
-                 js/main.js (builds the page) · js/play.js (interactions
-                 and the progress game) · README.md (full guide)
+                 js/theme.js (light/dark mode) · js/main.js (builds the page)
+                 js/play.js (interactions and the progress game)
+                 README.md (full guide)
    ========================================================================= */
 
 const SITE = {
@@ -34,7 +35,18 @@ const SITE = {
     ink:     "#10131f",            // main text
     muted:   "#6b6f7b",            // secondary text
     line:    "#e6e7ec",            // borders and dividers
-    accent:  "#2f4bff"             // hover and focus colour
+    accent:  "#2f4bff",            // hover and focus colour
+
+    darkMode: true,                // false removes dark mode and the toggle button
+    defaultMode: "system",         // "system" (follow the visitor's device), "light" or "dark"
+    dark: {                        // colours used in dark mode
+      paper:   "#0c0e16",
+      surface: "#161926",
+      ink:     "#eef0f7",
+      muted:   "#9aa0b4",
+      line:    "#262b3c",
+      accent:  "#8b9bff"
+    }
   },
 
   person: {
@@ -337,6 +349,7 @@ const SITE = {
       fine:    { title: "Fine print",       desc: "Opened two experience entries" },
       play:    { title: "Playful",          desc: "Dragged a sticker around" },
       hello:   { title: "Say hello",        desc: "Reached for the contact links" },
+      night:   { title: "Night owl",        desc: "Switched to dark mode" },
       all:     { title: "Completionist",    desc: "Explored every section" },
       speed:   { title: "Speed reader",     desc: "Scrolled fast enough to rev up the marquees", secret: true },
       konami:  { title: "Secret code",      desc: "Found the hidden keyboard shortcut",           secret: true }

@@ -292,7 +292,7 @@
 
     /* --- toasts --- */
     const queue = []; let showing = false;
-    const STAR = '<svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.2 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
+    const STAR = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.2 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
     function nextToast() {
       const id = queue.shift();
       if (!id) { showing = false; return; }
@@ -344,6 +344,9 @@
       if (sum && sum.parentElement && !sum.parentElement.open && ++opened >= 2) unlock("fine");
       if (t.closest('a[href^="mailto:"], .foot-links a')) unlock("hello");
     });
+
+    /* dark mode switch (only counts when the visitor presses the toggle) */
+    if (window.PFTheme) PFTheme.onChange((mode, byUser) => { if (byUser && mode === "dark") unlock("night"); });
 
     /* secret: the Konami code */
     const seq = ["arrowup", "arrowup", "arrowdown", "arrowdown", "arrowleft", "arrowright", "arrowleft", "arrowright", "b", "a"];
