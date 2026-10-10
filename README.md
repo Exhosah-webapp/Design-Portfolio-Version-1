@@ -11,6 +11,7 @@ portfolio-site/
 │   └── style.css         All styling and animation.
 ├── js/
 │   ├── content.js        YOUR TEXT, IMAGES, COLOURS. The file you edit most.
+│   ├── theme.js          Light and dark mode (runs first, so there is no flash).
 │   ├── main.js           Builds the page from content.js.
 │   └── play.js           Interactions and the progress game (optional).
 ├── images/               Project screenshots and your portrait (WebP).
@@ -42,7 +43,7 @@ Everything lives in one object called `SITE`. Change what's inside the quotes.
 | About text, counting stats, skills, education | `about` |
 | Jobs and bullet points | `experience.items` |
 | Closing headline | `contact` |
-| Colours and font | `theme` |
+| Colours (light and dark) and font | `theme` |
 
 ### Add a project
 
@@ -83,6 +84,16 @@ This resizes everything to 1800 px wide, converts to WebP and drops the files in
 
 In `theme`: `font` accepts any Google Font name (for example `"Inter Tight"` or `"Instrument Sans"`), and the colour values are plain hex codes. `accent` is used for hover states, the progress bar and the game.
 
+### Dark mode
+
+The sun/moon button in the top bar switches between light and dark, with a circular colour wipe growing out of the button.
+
+- **First visit:** the site follows the visitor's device setting. Once they press the toggle, their choice is remembered in their browser.
+- **Dark colours:** edit `theme.dark` in `content.js` (`paper`, `surface`, `ink`, `muted`, `line`, `accent`). The light colours sit just above it.
+- **Start mode:** `theme.defaultMode` can be `"system"` (default), `"light"` or `"dark"`. It only applies until the visitor makes their own choice.
+- **Remove it:** set `theme.darkMode` to `false` and the toggle disappears.
+- Switching to dark unlocks the "Night owl" achievement in the game.
+
 ## Motion and the progress game
 
 Interactions are in `js/play.js`, switched on or off in `SITE.effects`:
@@ -112,6 +123,7 @@ Drag the whole `portfolio-site` folder (keep the `images` folder inside it) onto
 ## Troubleshooting
 
 - **Images don't show.** Check that the file name in `content.js` matches the file in `images/` exactly, including capitals, and that the `images` folder sits next to `index.html`.
+- **Dark mode shows the wrong mode.** The choice is saved per browser. To test as a new visitor, clear the site's data or use a private window.
 - **The font looks different.** The Google Font loads over the internet. Offline, the page falls back to your system font.
 - **Page is blank.** There's probably a missing comma or quote in `js/content.js`. Open the browser console (F12) to see which line.
 - **Want to start the game over.** Open the progress panel and press "Reset progress".
